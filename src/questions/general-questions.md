@@ -5,12 +5,31 @@ permalink: /questions/general-questions/index.html
 ---
 
 * What did you learn yesterday/this week?
+
 * What excites or interests you about coding?
+  - putting ideas into reality
+  - technology is always changing, exciting to learn new tech
 * What is a recent technical challenge you experienced and how did you solve it?
+  - NearMiss
 * When building a new web site or maintaining one, can you explain some techniques you have used to increase performance?
+  - backend
+  - front end
 * Can you describe some SEO best practices or techniques you have used lately?
+  - main keywords early on in content
+  - avoid duplicate content across your website
+  - high-quality title tag
+  - optimize loading speed
+    - text compression
+    - minimizing assets/images
+    - lazy loading
+    - CDN
+  - optmize images (good file names and alt text)
+  - internal linking & backlinks
 * Can you explain any common techniques or recent issues solved in regards to front-end security?
+  - XSS
+  - DDOS
 * What actions have you personally taken on recent projects to increase maintainability of your code?
+  -
 * Talk about your preferred development environment.
 * Which version control systems are you familiar with?
 * Can you describe your workflow when you create a web page?
