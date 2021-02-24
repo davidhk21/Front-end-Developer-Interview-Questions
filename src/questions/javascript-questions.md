@@ -79,34 +79,138 @@ permalink: /questions/javascript-questions/index.html
   - UA string: User Agent String is a string text of data that each browsers send and can be accessed via navigator.userAgent. These "string text of data" contains information about the browser environment you are targeting. If you open your console and run 'navigator.userAgent', you'll see a string text of data containing complete information of the environment you are currently using.
 
 * Explain "hoisting".
-  -
+  - Hoisting is JavaScript's default behavior of moving declarations to the top, allowing you to use a variable before it has been declared.
 
 * Describe event bubbling.
+  - event bubbling is the last phase out of three of event propagation where the event that occurs propagates (or bubbles) up from the target element and triggers those elements until it reaches the outermost DOM element or document object.
+
 * Describe event capturing.
+  - event capturing is the first phase out of three of event propagation where the event starts from the top element to the target element, the opposite of event bubbling.
+
 * What's the difference between an "attribute" and a "property"?
+  - HTML representations of a DOM element have attributes and javascript objects have properties.
+  - Sometimes changing the properties will typically update the attributes, such as changing the element.href property will update the href attribute on the element.
+
 * What are the pros and cons of extending built-in JavaScript objects?
+  - Extending a built-in JavaScript object means adding properties/functions to its prototype. Generally not a good idea to do so.
+  - Pros:
+    - objects can share the same method
+    - failed lookups can go to its prototype
+  - Cons:
+    - prototype properties/methods can be overwritten which can break your code
+
 * What is the difference between `==` and `===`?
+  - `==` is the abstract equality operator that will compare for equality after doing any necessary type conversions.
+  - `===` is the strict equality operator which will check if the two valules are pointing to the same value in memory and will not do type conversion.
+
 * Explain the same-origin policy with regards to JavaScript.
+  - The same-origin policy prevents JavaScript from making requests across domain boundaries. An origin is defined as a combination of URI scheme, hostname, and port number. This policy prevents a malicious script on one page from obtaining access to sensitve data on another web page through that page's Document Object Model.
+
 * Why is it called a Ternary operator, what does the word "Ternary" indicate?
+  - "Ternary" indicates three, and a ternary expression accepts three operands, the test condition, the "then" expression and the "else" expression.
+
 * What is strict mode? What are some of the advantages/disadvantages of using it?
+  - 'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
+  - Pros:
+    - makes it impossible to accidentally create global variables
+    - makes assignments which would otherwise silently fail to throw an exception
+    - catches some common coding bloopers, throwing exceptions
+    - disables features that are confusing or poorly thought out
+  - Cons:
+    - missing features that some developers might be used to
+    - concatenation of scripts written in differnet strict modes might cause issues
+    - slow development
+
 * What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
+  - Some examples of langauges that compile to JavaScript include CoffeeScript, TypeScript, and Elm.
+  - Pros:
+    - Types: JS vaue typing and type guessing is a menace with a large code base. This is why TypeScript exists.
+    - Features: JS evolves quite slowly in terms of browser implementation.
+  - Cons:
+    - requires a build/compile process as browsers only run JavaScript
+    - Debugging can be a pain if your source maps do not map nicely
+    - Depends on the language, but smaller community leads to less resources, tutorials, libraries, and tooling.
+
 * What tools and techniques do you use debugging JavaScript code?
+  - React: React DevTools
+  - JavaScript: Chrome Devtools, console logs, debugger statement
+  - Node: debugger
+
 * Explain the difference between mutable and immutable objects.
+  - A mutable object is an object whose state can be modified after it is created. An immutable object is an object whose state cannot be modified after it is created. Immutability is a core principle in funcitonal programming, and has lots to offer to object-oriented programs as well.
   * What is an example of an immutable object in JavaScript?
+    - In JavaScript, some built-in types (numbers, strings) are immutable, but custom objects are generally mutable.
+    - Some built-in immutable JavaScript objects are Math, Date.
   * What are the pros and cons of immutability?
+    - Pros:
+      - Easier change detection
+      - No need to worry about modification of an object
+      - Reuse the same object without needing to create a copy
+      - Using libraries like ImmutableJS, objects are modified using structural sharing and less memory is needed for having multiple objects with similar structures.
   * How can you achieve immutability in your own code?
+    - You can use libraires like ImmutableJS, mori, or immer
+    - use const declarations
+    - For mutating objects, use the spread operator, Object.assign, Array.concat() to create new objects instead of mutating the original object.
+
 * Explain the difference between synchronous and asynchronous functions.
+  - Synchronous functions are blocking while asynchronous functions are not. In synchronous functions, statements complete before the next statement is run. In this case, the program is evacuated exactly in order of the statements and execution of the program is paused if one of the statements take a very long time.
+  - Asynchronous functions usually accept a callback as a parameter and execution continues on the next line immediately after the asynchronous function is invoked. The callback is only invoked when the asynchronous operation is complete and the call stack is empty. Heavy duty operations such as loading data from a web server or querying a database should be done asynchronously so that the main thread can continue executing other operations instead of blocking until that long operation to comoplete.
+
 * What is event loop?
   * What is the difference between call stack and task queue?
+  - The event loop is a single-threaded loop that monitors the call stack and checks if there is any work to be done in the task queue. If the call stack is empty and there are callback functions in the task queue, a function is dequeued and pushed onto the call stack to be executed.
+
 * What are the differences between variables created using `let`, `var` or `const`?
+  - 3 main differences: scope, hoisting, and reassignment
+  - Variables declared using the `var` keyword are scoped to the function in which they are created, or if created outisde of any function, to the global object.
+  - `let` and `const` are block scoped, meaning they are only accessible within the nearest set of curly braces (function, if else block, or for loop)
+  - `var` allows variables to be hoisted, meaning they can be referenced in code before they are declared. `let` and `const` will not allow this, instead throwing an error.
+  - Redeclaring a variable with `var` will not throw an error, but `let` and `const` will.
+  - `let` and `const` differ in that `let` allows reassigning the variable's value while `const` does not.
+
 * What are the differences between ES6 class and ES5 function constructors?
+  - ES5 constructors uses a pseudoclassical pattern.
+  - ES6 uses the ES6 pattern where you initiallize the class using `class` and constructor function.
+  - The main difference in the constructor comes when using inheritance.
+    - ES5: you need to call constructor of superclass to initialize superclass-derived members and then set the prototype to be the superclass' prototype
+    - ES6: extends from superclass and invoke super with the superclass' inputs.
+
 * Can you offer a use case for the new arrow `=>` function syntax? How does this new syntax differ from other functions?
+  - call back functions
+  - methods for `this` to be lexically scoped, meaning it is bound to the enclosing scope which is different compared to regular functions where `this` is determined by the object calling it.
+
 * What advantage is there for using the arrow syntax for a method in a constructor?
+  - The main advantage of using an arrow function as a method inside a constructor is that the value of `this` gets set at the time of the function creation and can't change after that and is lexically scoped.
+
 * What is the definition of a higher-order function?
+  - Higher-order funciton is a function that either takes a function as a callback function or returns a function.
+  - Examples are map, forEach, filter, reduce, bind
+
 * Can you give an example for destructuring an object or an array?
+  - Array destructuring:
+    - const foo = [`one`, `two`, `three`];
+    - const [one, two, three] = foo;
+    - console.log(one) // one
+    - console.log(two) // two
+    - console.log(three) // three
+    - can also swap values like [a, b] = [b, a]
+  - Object Destructuring
+    - const o = { p: 42, q: true };
+    - const { p, q } = o;
+    - console.log(p) // 42
+    - console.log(q) // true
+
 * Can you give an example of generating a string with ES6 Template Literals?
+  - include variables in a string
+  - create multi-line strings
+  - use as a substitute for templating libraries for simple variable interpolations
+
 * Can you give an example of a curry function and why this syntax offers an advantage?
+  - Currying is a pattern where a function with more than one parameter is broken into multiple functions that, when called in series, will accumulate all of the required parameters one at a time. This technique can be useful for making code written in a funcitonal style easier to read and compose. It's important to note that for a function to be curried, it needs to start out as one function, then broken out into a sequence of functions that each accepts one parameter.
+
 * What are the benefits of using `spread syntax` and how is it different from `rest syntax`?
+  -
+
 * How can you share code between files?
 * Why you might want to create static class members?
 * What is the difference between `while` and `do-while` loops in JavaScript?
