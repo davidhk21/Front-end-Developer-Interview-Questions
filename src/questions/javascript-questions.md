@@ -253,7 +253,7 @@ console.log("foo" && "bar")
 ```
 Answer:
 'hello'
-true
+'bar'
 
 * Write an immediately invoked function expression (IIFE)
 (function() {
