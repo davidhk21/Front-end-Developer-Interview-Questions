@@ -209,22 +209,65 @@ permalink: /questions/javascript-questions/index.html
   - Currying is a pattern where a function with more than one parameter is broken into multiple functions that, when called in series, will accumulate all of the required parameters one at a time. This technique can be useful for making code written in a funcitonal style easier to read and compose. It's important to note that for a function to be curried, it needs to start out as one function, then broken out into a sequence of functions that each accepts one parameter.
 
 * What are the benefits of using `spread syntax` and how is it different from `rest syntax`?
-  -
+  - The `spread syntax` allows you to easily create copies of arrays or objects without resorting to Object.create or slice.
+  - The `rest syntax` offers a shorthand for including an arbitrary number of arguments to be passed to a function. It is like an inverse of the spread syntax, taking data and stuffing it into an array rather than unpacking an array of data, and it works in function arguments, as well as array and object destructuriing assignments.
 
 * How can you share code between files?
+  - This depends on the JavaScript environment.
+  - On the client (browser environment), as long as the variables/functions are declared in the global scope (window), all scripts can refer to them. Alternatively, adopt the Asynchronous Module Definition (AMD) via RequireJS for a more modular approach. Imports/Exports
+  - On the server (Node.js), the common way has been to use CommonJS. Each file is treated as a module and it can export variables and functions by attaching them to the module.exports object.
+
 * Why you might want to create static class members?
+  - Static class memebrs (properties/methods) are not tied to a specific instance of a class and have the same value regardless of which instance is referring to it. Static properties are typically configuration variables and static methods are usually pure utility functions which do not depend on the state of the instance.
+
 * What is the difference between `while` and `do-while` loops in JavaScript?
+  - `while` iterates through the block of code as long as the condition for the while statement is true.
+  - `do-while` loop evaluates the condition AFTER each loop iteration and executes a block of code iteratively for that specified condition. Does the iteration atleast once.
+
 * What is a promise? Where and how would you use promise?
+  - A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it's not resolved. A promise may be in one of 3 possible states: fulfilled, rejected, or pending.
+  - Examples of when you would use a promise is anything that's handled asynchronously, such as fetching data from an API or making a post request to your database.
 
 ## Coding questions
 * Make this work:
 ```javascript
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 ```
+Answer:
+const duplicate = (arr) => {
+  return [...arr, ...arr];
+}
+
 * Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
+Answer:
+for (let i = 1; i <= 100; i++) {
+  if (i % 3 === 0) console.log('fizz')
+  if (i % 5 === 0) console.log('buzz')
+  if (i % 3 === 0 && i % 5 === 0) console.log('fizzbuzz')
+}
+
 * What will be returned by each of these?
 ```javascript
 console.log("hello" || "world")
 console.log("foo" && "bar")
 ```
+Answer:
+'hello'
+true
+
 * Write an immediately invoked function expression (IIFE)
+(function() {
+  console.log('hello IIFE!')
+})()
+
+or
+
+(() => {
+  console.log('hello arrow function IIFE!')
+})()
+
+you can also put the invoking parentheses inside the expression parentheses. Just based on preference
+
+(() => {
+  console.log('hello!)
+}())
